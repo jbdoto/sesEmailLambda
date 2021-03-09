@@ -6,9 +6,9 @@ from botocore.exceptions import ClientError
 
 
 def send_email(event):
-
     job_status = event['detail']['status']
     job_name = event['detail']['jobName']
+    job_id = event['detail']['jobId']
 
     # Replace sender@example.com with your "From" address.
     # This address must be verified with Amazon SES.
@@ -21,7 +21,7 @@ def send_email(event):
     # Specify a configuration set. If you do not want to use a configuration
     # set, comment the following variable, and the
     # ConfigurationSetName=CONFIGURATION_SET argument below.
-    #CONFIGURATION_SET = "ConfigSet"
+    # CONFIGURATION_SET = "ConfigSet"
 
     # If necessary, replace us-west-2 with the AWS Region you're using for Amazon SES.
     AWS_REGION = "us-east-1"
@@ -30,33 +30,29 @@ def send_email(event):
     SUBJECT = "intSiteCaller Job %s has %s" % (job_name, job_status)
 
     # The email body for recipients with non-HTML email clients.
-    BODY_TEXT = ("Amazon SES Test (Python)\r\n"
-                 "This email was sent with Amazon SES using the "
-                 "AWS SDK for Python (Boto)."
-                 )
+    BODY_TEXT = ("Bushman Lab IntSiteCaller Batch Job Report\r\n")
 
     # The HTML body of the email.
     BODY_HTML = """<html>
     <head></head>
     <body>
-      <h1>Amazon SES Test (SDK for Python)</h1>
-      <p>This email was sent with
-        <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-        <a href='https://aws.amazon.com/sdk-for-python/'>
-          AWS SDK for Python (Boto)</a>.</p>
+      <h1>Bushman Lab IntSiteCaller Batch Job Report</h1>
+      <p>intSiteCaller Job %s has %s
+        <a href='https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/%s'>Check job</a>
+      </p>
     </body>
     </html>
-                """
+                """ % (job_name, job_status, job_id)
 
     # The character encoding for the email.
     CHARSET = "UTF-8"
 
     # Create a new SES resource and specify a region.
-    client = boto3.client('ses',region_name=AWS_REGION)
+    client = boto3.client('ses', region_name=AWS_REGION)
 
     # Try to send the email.
     try:
-        #Provide the contents of the email.
+        # Provide the contents of the email.
         response = client.send_email(
             Destination={
                 'ToAddresses': [
@@ -82,7 +78,7 @@ def send_email(event):
             Source=SENDER,
             # If you are not using a configuration set, comment or delete the
             # following line
-#            ConfigurationSetName=CONFIGURATION_SET,
+            #            ConfigurationSetName=CONFIGURATION_SET,
         )
     # Display an error if something goes wrong.
     except ClientError as e:
