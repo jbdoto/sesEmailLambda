@@ -1,4 +1,5 @@
 import json
+import os
 
 import boto3
 from botocore.exceptions import ClientError
@@ -11,11 +12,11 @@ def send_email(event):
 
     # Replace sender@example.com with your "From" address.
     # This address must be verified with Amazon SES.
-    SENDER = "Jeffrey Doto <jeffdoto@amazon.com>"
+    SENDER = os.environ['FROM_ADDRESS']
 
     # Replace recipient@example.com with a "To" address. If your account
     # is still in the sandbox, this address must be verified.
-    RECIPIENT = "jeffdoto@amazon.com"
+    RECIPIENT = os.environ['TO_ADDRESS']
 
     # Specify a configuration set. If you do not want to use a configuration
     # set, comment the following variable, and the
