@@ -37,9 +37,10 @@ def send_email(event):
     <head></head>
     <body>
       <h1>Bushman Lab IntSiteCaller Batch Job Report</h1>
-      <p>intSiteCaller Job %s has %s
-        <a href='https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/%s'>Check job</a>
-      </p>
+      <p>intSiteCaller Job %s has %s</p>
+      <br/>
+      <a href='https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/%s'>Check job</a>
+
     </body>
     </html>
                 """ % (job_name, job_status, job_id)
