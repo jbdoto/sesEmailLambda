@@ -1,0 +1,172 @@
+{
+  "version": "0",
+  "id": "bb8c2ba4-a8b3-99e1-9f8a-f39844ff5169",
+  "detail-type": "Batch Job State Change",
+  "source": "aws.batch",
+  "account": "<accountId>",
+  "time": "2021-03-09T16:28:19Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:batch:us-east-1:<accountId>:job/e99a98c7-1e27-467f-995f-423ff4f57350"
+  ],
+  "detail": {
+    "jobArn": "arn:aws:batch:us-east-1:<accountId>:job/e99a98c7-1e27-467f-995f-423ff4f57350",
+    "jobName": "ErrorCheck_G6RV5",
+    "jobId": "e99a98c7-1e27-467f-995f-423ff4f57350",
+    "jobQueue": "arn:aws:batch:us-east-1:<accountId>:job-queue/intsitecaller-job-queue",
+    "status": "FAILED",
+    "attempts": [
+      {
+        "container": {
+          "containerInstanceArn": "arn:aws:ecs:us-east-1:<accountId>:container-instance/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/146e654b6e9a41c58c82c08252c1efa2",
+          "taskArn": "arn:aws:ecs:us-east-1:<accountId>:task/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/324285f4a00646088625853725d4c576",
+          "exitCode": 2,
+          "logStreamName": "intsitecaller-intsitecaller-1_0_0/default/3  24285f4a00646088625853725d4c576",
+          "networkInterfaces": []
+        },
+        "startedAt": 1615307291648,
+        "stoppedAt": 1615307292287,
+        "statusReason": "Essential container in task exited"
+      },
+      {
+        "container": {
+          "containerInstanceArn": "arn:aws:ecs:us-east-1:<accountId>:container-instance/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/146e654b6e9a41c58c82c08252c1efa2",
+          "taskArn": "arn:aws:ecs:us-east-1:<accountId>:task/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/67ff6410d8794d7e8a58045579c1a710",
+          "exitCode": 2,
+          "logStreamName": "intsitecaller-intsitecaller-1_0_0/default/67ff6410d8794d7e8a58045579c1a710",
+          "networkInterfaces": []
+        },
+        "startedAt": 1615307297752,
+        "stoppedAt": 1615307298274,
+        "statusReason": "Essential container in task exited"
+      }
+    ],
+    "statusReason": "Essential container in task exited",
+    "createdAt": 1615307036032,
+    "retryStrategy": {
+      "attempts": 2,
+      "evaluateOnExit": []
+    },
+    "startedAt": 1615307297752,
+    "stoppedAt": 1615307298274,
+    "dependsOn": [],
+    "jobDefinition": "arn:aws:batch:us-east-1:<accountId>:jo  b-definition/intsitecaller-intsitecaller-1_0_0:17",
+    "parameters": {
+      "PARENT_AWS_BATCH_JOB_ID": "0",
+      "PARENT_AWS_BATCH_JOB_ATTEMPT": "0",
+      "OBJECT_NAME": "STEP-FUNCTION-WILL-PROVIDE",
+      "RUN_COMMAND": "STEP-FUNCTION-WILL-PROVIDE",
+      "SERIAL_WAIT": "TRUE",
+      "FILENAME": "STEP-FUNCTION-WILL-PROVIDE",
+      "BUCKET_NAME": "intsitecaller-samples",
+      "SAMPLE_ID": "STEP-FUNCTION-WILL-PROVIDE"
+    },
+    "container": {
+      "image": "<accountId>.dkr.ecr.us-east-1.amazonaws.com/intsitecaller:1.0.0",
+      "vcpus": 1,
+      "memory": 4000,
+      "command": [],
+      "volumes": [
+        {
+          "host": {
+            "sourcePath": "/scratch"
+          },
+          "name": "docker_scratch"
+        }
+      ],
+      "environment": [
+        {
+          "name": "BROAD_BUCKET",
+          "value": "broad-references"
+        },
+        {
+          "name": "AWS_REGION",
+          "value": "us-east-1"
+        },
+        {
+          "name": "JOBRESULTS_BUCKET",
+          "value": "intsitecaller-jobresults"
+        },
+        {
+          "name": "PARENT_AWS_BATCH_JOB_ATTEMPT",
+          "value": "1"
+        },
+        {
+          "name": "ECS_ENABLE_CONTAINER_METADATA",
+          "value": "true"
+        },
+        {
+          "name": "RUN_COMMAND",
+          "value": "-e \"source('/intSiteCaller/programFlow.R'); check_error();\""
+        },
+        {
+          "name": "DEPENDENCIES_BUCKET",
+          "value": "intsitecaller-dependencies"
+        },
+        {
+          "name": "JOB_NAME",
+          "value": "ErrorCheck_G6RV5"
+        },
+        {
+          "name": "PARENT_AWS_BATCH_JOB_ID",
+          "value": "a952b232-c9cb-4043-96a8-a8dfe2057349"
+        },
+        {
+          "name": "SAMPLES_BUCKET",
+          "value": "intsitecaller-samples"
+        },
+        {
+          "name": "JOB_QUEUE",
+          "value": "intsitecaller-job-queue"
+        },
+        {
+          "name": "DATASETS_BUCKET",
+          "value": "intsitecaller-datasets"
+        },
+        {
+          "name": "OBJECT_NAME",
+          "value": "samples/G6RV5.tar.gz"
+        },
+        {
+          "name": "JOB_TYPE",
+          "value": "CHILD"
+        },
+        {
+          "name": "JOB_DEFINITION",
+          "value": "intsitecaller-intsitecaller-1_0_0"
+        },
+        {
+          "name": "BUCKET_NAME",
+          "value": "intsitecaller-samples"
+        },
+        {
+          "name": "SAMPLE_ID",
+          "value": "G6RV5"
+        }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/scratch",
+          "readOnly": false,
+          "sourceVolume": "docker_scratch"
+        }
+      ],
+      "ulimits": [],
+      "exitCode": 2,
+      "containerInstanceArn": "arn:aws:ecs:us-east-1:<accountId>:container-instance/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/146e654b6e9a41c58c82c08252c1efa2",
+      "taskArn": "arn:aws:ecs:us-east-1:<accountId>:task/intsitecaller-spot-1_0_2_Batch_cf76055c-a27f-3bb9-bbdc-6738b9a1c8c4/67ff6410d8794d7e8a580455  79c1a710",
+      "logStreamName": "intsitecaller-intsitecaller-1_0_0/default/67ff6410d8794d7e8a58045579c1a710",
+      "networkInterfaces": [],
+      "resourceRequirements": [],
+      "secrets": []
+    },
+    "timeout": {
+      "attemptDurationSeconds": 7200
+    },
+    "tags": {
+      "resourceArn": "arn:aws:batch:us-east-1:<accountId>:job/e99a98c7-1e27-467f-995f-423ff4f57350"
+    },
+    "propagateTags": false,
+    "platformCapabilities": []
+  }
+}
