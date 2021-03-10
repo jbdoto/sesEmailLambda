@@ -1,6 +1,6 @@
 import json
 import os
-
+from json2html import *
 import boto3
 from botocore.exceptions import ClientError
 
@@ -32,18 +32,21 @@ def send_email(event):
     # The email body for recipients with non-HTML email clients.
     BODY_TEXT = ("Bushman Lab IntSiteCaller Batch Job Report\r\n")
 
+    table = json2html.convert(json = event)
+
     # The HTML body of the email.
     BODY_HTML = """<html>
     <head></head>
     <body>
       <h1>Bushman Lab IntSiteCaller Batch Job Report</h1>
-      <p>intSiteCaller Job %s has %s</p>
       <br/>
-      <a href='https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/%s'>Check job</a>
-
+      <a href='https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/%s'>View job details in console.</a>
+      <br/>
+      <br/>
+      <div>%s</div>
     </body>
     </html>
-                """ % (job_name, job_status, job_id)
+                """ % (job_id, table)
 
     # The character encoding for the email.
     CHARSET = "UTF-8"
