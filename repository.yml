@@ -17,4 +17,4 @@ Outputs:
 
 
 # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 483158796244.dkr.ecr.us-east-1.amazonaws.com
-# aws cloudformation create-stack --stack-name SNSEmailHandlerECRRepository --template-body file://Repository.yml --profile=jdoto-ab3 --region=us-east-1
+# aws cloudformation create-stack --stack-name IntSiteCallerUploadHandlerECRRepository --template-body file://repository.yml  --profile=<your_profile> --region=us-east-1 --capabilities CAPABILITY_NAMED_IAM;
